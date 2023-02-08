@@ -1,65 +1,71 @@
-const text = document.querySelector("#text");
-const btn = document.querySelector("#convert-btn");
+// Input Text Element
+const inputTextEl = document.querySelector("#text");
+// Case Converter Btn
+const convertBtn = document.querySelector("#convert-btn");
 
-btn.addEventListener("click", function caseConverter() {
-  let inputText = text.value;
+// Output Case Elements
+const camelCaseEl = document.querySelector("#camel-case");
+const pascalCaseEl = document.querySelector("#pascal-case");
+const snakeCaseEl = document.querySelector("#snake-case");
+const screamingSnakeCaseEl = document.querySelector("#screaming-snake-case");
+const kebabCaseEl = document.querySelector("#kebab-case");
+const screamingKebabCaseEl = document.querySelector("#screaming-kebab-case");
 
-  // CAMEL CASE
-  const camelCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
+// Event Listner on convert BTN to convert input text into multiple cases
+convertBtn.addEventListener("click", () => {
+  const inputText = inputTextEl.value;
 
-    return (
-      first.toLowerCase() +
-      second[0].toUpperCase() +
-      second.slice("1").toLowerCase()
+  // Camel Case Converter
+  const camelCaseConverter = (inputText) => {
+    const [first, ...rest] = inputText.split(" ");
+    const camels = rest.map(
+      (word) => word[0].toUpperCase() + word.slice("1").toLowerCase()
     );
+    return first.toLowerCase() + camels.join("");
   };
-  document.querySelector("#camel-case").textContent = camelCase(inputText);
+  camelCaseEl.textContent = camelCaseConverter(inputText);
 
-  // PASCAL CASE
-  const pascalCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
-
-    return (
-      first[0].toUpperCase() +
-      first.slice("1").toLowerCase() +
-      second[0].toUpperCase() +
-      second.slice("1").toLowerCase()
+  // Pascal Case Converter
+  const pascalCaseConverter = (inputText) => {
+    const [...rest] = inputText.split(" ");
+    const pascals = rest.map(
+      (word) => word[0].toUpperCase() + word.slice("1").toLowerCase()
     );
+    return pascals.join("");
   };
-  document.querySelector("#pascal-case").textContent = pascalCase(inputText);
+  pascalCaseEl.textContent = pascalCaseConverter(inputText);
 
-  // SNAKE CASE
-  const snakeCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
-
-    return first.toLowerCase() + "_" + second.toLowerCase();
+  // Snake Case Converter
+  const snakeCaseConverter = (inputText) => {
+    const [...rest] = inputText.split(" ");
+    const snakes = rest.map((word) => word.toLowerCase());
+    return snakes.join("_");
   };
-  document.querySelector("#snake-case").textContent = snakeCase(inputText);
+  snakeCaseEl.textContent = snakeCaseConverter(inputText);
 
-  // SCREAMING SNAKE CASE
-  const screamingSnakeCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
-
-    return first.toUpperCase() + "_" + second.toUpperCase();
+  // Screaming Snake Case Converter
+  const screamingSnakeCaseConverter = (inputText) => {
+    const [...rest] = inputText.split(" ");
+    const screamingSnakes = rest.map((word) => word.toUpperCase());
+    return screamingSnakes.join("_");
   };
-  document.querySelector("#screaming-snake-case").textContent =
-    screamingSnakeCase(inputText);
+  screamingSnakeCaseEl.textContent = screamingSnakeCaseConverter(inputText);
 
-  // KEBAB CASE
-  const kebabCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
-
-    return first.toLowerCase() + "-" + second.toLowerCase();
+  // Kebab Case Converter
+  const kebabCaseConverter = (inputText) => {
+    const [...rest] = inputText.split(" ");
+    const kebabs = rest.map(
+      (word) => word[0].toUpperCase() + word.slice("1").toLowerCase()
+    );
+    return kebabs.join("-");
   };
-  document.querySelector("#kebab-case").textContent = kebabCase(inputText);
+  kebabCaseEl.textContent = kebabCaseConverter(inputText);
 
-  // SCREAMING KEBAB CASE
-  const screamingKebabCase = (inputText) => {
-    const [first, second] = inputText.split(" ");
-
-    return first.toUpperCase() + "-" + second.toUpperCase();
+  // Screaming Kebab Case Converter
+  const screamingKebabCaseConverter = (inputText) => {
+    const [...rest] = inputText.split(" ");
+    const screamingKebabs = rest.map((word) => word.toUpperCase());
+    return screamingKebabs.join("-");
   };
-  document.querySelector("#screaming-kebab-case").textContent =
-    screamingKebabCase(inputText);
+  screamingKebabCaseEl.textContent = screamingKebabCaseConverter(inputText);
 });
